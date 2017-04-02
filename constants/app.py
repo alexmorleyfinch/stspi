@@ -1,0 +1,8 @@
+from constants.colour import BLACK, GREY, WHITE
+
+SIZE = [500, 500]
+FPS = 60
+
+TEXT = BLACK
+TEXT_FADED = GREY
+BACKGROUND = WHITE
