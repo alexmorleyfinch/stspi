@@ -2,7 +2,7 @@ import pygame
 import constants
 
 from ioMap import translateInputToOutput
-from utils.gameUtils import simpleGameLoop
+from input.controller import Ps3ControllerInput
 from renderers.joystickInfo import renderJoystickInfo
 from renderers.joystickFeedback import renderJoystickFeedback
 
@@ -15,26 +15,16 @@ from renderers.joystickFeedback import renderJoystickFeedback
 class StsPiController(object):
   def __init__(self):
     pygame.init()
-    pygame.joystick.init()
     pygame.display.set_caption("STS-PI controller")
 
     self.screen = pygame.display.set_mode(constants.SIZE)
+    self.controller = Ps3ControllerInput()
 
-  def getActiveButtons(self, joystickId):
-    joystick = pygame.joystick.Joystick(joystickId)
-    joystick.init()
-
-    buttons = {}
-
-    for key in constants.BUTTONS:
-      buttons[key] = joystick.get_button(key)
-
-    return buttons
 
   def render(self):
     self.screen.fill(constants.WHITE)
 
-    buttons = self.getActiveButtons(0);
+    buttons = self.controller.getActiveButtons(0);
 
     #renderJoystickInfo(self.screen);
     renderJoystickFeedback(self.screen, buttons);
