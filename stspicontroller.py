@@ -5,12 +5,6 @@ from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
 from output.pygameDisplay import PygameWindowOutput
 
-# deps
-# - pygame
-# - joystick
-# - display
-# - camera API
-
 class StsPiController(object):
   def __init__(self):
     pygame.init()
