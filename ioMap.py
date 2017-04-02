@@ -1,26 +1,27 @@
 import constants
-import motorControl
+
+from output import explorerHat
 
 def translateInputToOutput(buttons):
   if buttons[constants.EX]:
     if buttons[constants.LEFT]:
-      motorControl.leftBank()
+      explorerHat.leftBank()
     elif buttons[constants.RIGHT]:
-      motorControl.rightBank()
+      explorerHat.rightBank()
     else:
-      motorControl.go()
+      explorerHat.go()
   elif buttons[constants.SQUARE]:
     if buttons[constants.LEFT]:
-      #motorControl.reverseLeftBank()
-      motorControl.reverse()
+      #explorerHat.reverseLeftBank()
+      explorerHat.reverse()
     elif buttons[constants.RIGHT]:
-      #motorControl.reverseRightBank()
-      motorControl.reverse()
+      #explorerHat.reverseRightBank()
+      explorerHat.reverse()
     else:
-      motorControl.reverse()
+      explorerHat.reverse()
   elif buttons[constants.LEFT]:
-    motorControl.left()
+    explorerHat.left()
   elif buttons[constants.RIGHT]:
-    motorControl.right()
+    explorerHat.right()
   else:
-    motorControl.stop()
+    explorerHat.stop()

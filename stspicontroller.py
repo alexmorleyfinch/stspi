@@ -1,9 +1,9 @@
 import pygame
 import constants
 
-from output import OutputWindow
 from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
+from output.pygameDisplay import PygameWindowOutput
 
 # deps
 # - pygame
@@ -17,7 +17,7 @@ class StsPiController(object):
 
     self.controllerInput = Ps3ControllerInput()
 
-    self.visualOutput = OutputWindow()
+    self.visualOutput = PygameWindowOutput()
 
 
   def render(self):
@@ -26,6 +26,7 @@ class StsPiController(object):
     self.visualOutput.render(buttons)
 
     translateInputToOutput(buttons)
+
 
   def start(self):
     self.done = False

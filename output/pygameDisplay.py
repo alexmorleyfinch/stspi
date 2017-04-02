@@ -4,7 +4,7 @@ import constants
 from renderers.joystickInfo import renderJoystickInfo
 from renderers.joystickFeedback import renderJoystickFeedback
 
-class OutputWindow():
+class PygameWindowOutput():
   def __init__(self):
     pygame.display.set_caption("STS-PI controller")
 
