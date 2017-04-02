@@ -1,5 +1,5 @@
 import pygame
-import constants
+from constants.app import FPS
 
 from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
@@ -41,7 +41,7 @@ class StsPiController(object):
 
       self.visualOutput.renderNoController()
 
-      clock.tick(constants.FPS)
+      clock.tick(FPS)
 
   def start(self):
     self.done = False
@@ -57,7 +57,7 @@ class StsPiController(object):
 
       self.render()
 
-      clock.tick(constants.FPS)
+      clock.tick(FPS)
 
   def stop(self):
     self.done = True

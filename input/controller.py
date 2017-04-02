@@ -1,6 +1,5 @@
-import pygame
-import constants
 import time
+import pygame
 
 INACTIVITY_RECONNECT_TIME = 2
 RECONNECT_TIMEOUT = 1

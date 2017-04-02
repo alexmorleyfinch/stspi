@@ -1,5 +1,5 @@
 import pygame
-import constants
+from constants.app import TEXT
 
 def renderJoystickInfo(screen):
   # Get ready to print
@@ -67,7 +67,7 @@ class TextPrint(object):
     self.font = pygame.font.Font(None, 20)
 
   def print(self, my_screen, text_string):
-    text_bitmap = self.font.render(text_string, True, constants.BLACK)
+    text_bitmap = self.font.render(text_string, True, TEXT)
     my_screen.blit(text_bitmap, [self.x_pos, self.y_pos])
     self.y_pos += self.line_height
 
