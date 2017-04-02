@@ -15,16 +15,14 @@ class StsPiController(object):
   def __init__(self):
     pygame.init()
 
-    self.controllerInput = Ps3ControllerInput()
-
     self.visualOutput = PygameWindowOutput()
+    self.controllerInput = Ps3ControllerInput()
 
   def render(self):
     buttons = self.controllerInput.getButtons(0)
 
-    self.visualOutput.render(buttons)
-
     translateInputToOutput(buttons)
+    self.visualOutput.render(buttons)
 
   def tryReconnect(self):
     done = False

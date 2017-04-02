@@ -1,6 +1,5 @@
-from constants.ps3Controller import EX, SQUARE, LEFT, RIGHT
-
 from output import explorerHat
+from constants.ps3Controller import EX, SQUARE, LEFT, RIGHT
 
 def translateInputToOutput(buttons):
   if buttons[EX]:
