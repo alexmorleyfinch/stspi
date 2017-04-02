@@ -1,10 +1,9 @@
 import pygame
 import constants
 
+from output import OutputWindow
 from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
-from renderers.joystickInfo import renderJoystickInfo
-from renderers.joystickFeedback import renderJoystickFeedback
 
 # deps
 # - pygame
@@ -15,23 +14,18 @@ from renderers.joystickFeedback import renderJoystickFeedback
 class StsPiController(object):
   def __init__(self):
     pygame.init()
-    pygame.display.set_caption("STS-PI controller")
 
-    self.screen = pygame.display.set_mode(constants.SIZE)
-    self.controller = Ps3ControllerInput()
+    self.controllerInput = Ps3ControllerInput()
+
+    self.visualOutput = OutputWindow()
 
 
   def render(self):
-    self.screen.fill(constants.WHITE)
+    buttons = self.controllerInput.getActiveButtons(0)
 
-    buttons = self.controller.getActiveButtons(0);
+    self.visualOutput.render(buttons)
 
-    #renderJoystickInfo(self.screen);
-    renderJoystickFeedback(self.screen, buttons);
-
-    translateInputToOutput(buttons);
-
-    pygame.display.flip()
+    translateInputToOutput(buttons)
 
   def start(self):
     self.done = False
