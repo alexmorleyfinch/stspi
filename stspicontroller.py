@@ -19,14 +19,29 @@ class StsPiController(object):
 
     self.visualOutput = PygameWindowOutput()
 
-
   def render(self):
-    buttons = self.controllerInput.getActiveButtons(0)
+    buttons = self.controllerInput.getButtons(0)
 
     self.visualOutput.render(buttons)
 
     translateInputToOutput(buttons)
 
+  def tryReconnect(self):
+    done = False
+    clock = pygame.time.Clock()
+
+    while not done:
+      for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          self.done = True
+          done = True
+
+      if self.controllerInput.hasController():
+        done = True
+
+      self.visualOutput.renderNoController()
+
+      clock.tick(constants.FPS)
 
   def start(self):
     self.done = False
@@ -37,11 +52,12 @@ class StsPiController(object):
         if event.type == pygame.QUIT:
           self.done = True
 
+      if not self.controllerInput.hasController():
+        self.tryReconnect()
+
       self.render()
 
       clock.tick(constants.FPS)
-
-    pygame.quit()
 
   def stop(self):
     self.done = True

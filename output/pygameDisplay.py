@@ -17,3 +17,14 @@ class PygameWindowOutput():
     renderJoystickFeedback(self.screen, buttons)
 
     pygame.display.flip()
+
+  def renderNoController(self):
+    self.screen.fill(constants.WHITE)
+
+    font = pygame.font.Font(None, 20)
+    text_bitmap = font.render('No Controller', True, constants.BLACK)
+
+    self.screen.blit(text_bitmap, [10, 10])
+
+    pygame.display.flip()
+

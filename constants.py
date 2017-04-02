@@ -2,11 +2,11 @@
 ######### CONFIG #########
 
 SIZE = [500, 500]
+FPS = 60
+
 BLACK = (0, 0, 0)
 GREY = (180, 180, 180)
 WHITE = (255, 255, 255)
-FPS = 60
-
 
 ######### KEYS #########
 
@@ -19,15 +19,3 @@ TRIANGLE = 12
 CIRCLE = 13
 EX = 14
 SQUARE = 15
-
-# only these button are checked
-BUTTONS = {
-  #UP: 'UP',
-  RIGHT: 'RIGHT',
-  #DOWN: 'DOWN',
-  LEFT: 'LEFT',
-  #TRIANGLE: 'TRIANGLE',
-  #CIRCLE: 'CIRCLE',
-  EX: 'EX',
-  SQUARE: 'SQUARE',
-}
