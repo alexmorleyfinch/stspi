@@ -8,3 +8,11 @@ TRIANGLE = 12
 CIRCLE = 13
 EX = 14
 SQUARE = 15
+
+L2 = 8
+R2 = 9
+L1 = 10
+R1 = 11
+
+SELECT = 0
+START = 3

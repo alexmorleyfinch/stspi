@@ -1,5 +1,6 @@
 import pygame
 from constants.app import FPS
+from constants.ps3Controller import SELECT
 
 from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
@@ -14,6 +15,11 @@ class StsPiController(object):
 
   def render(self):
     buttons = self.controllerInput.getButtons(0)
+
+    if buttons[SELECT]:
+      self.done = True
+      pygame.quit()
+      return
 
     translateInputToOutput(buttons)
     self.visualOutput.render(buttons)
