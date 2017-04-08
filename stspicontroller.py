@@ -20,7 +20,7 @@ class StsPiController(object):
     if buttons[SELECT]:
       self.done = True
       pygame.quit()
-      os.system('shutdown -now -h')
+      os.system('shutdown now -h')
       return
 
     translateInputToOutput(buttons)
