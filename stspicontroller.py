@@ -1,3 +1,4 @@
+import os
 import pygame
 from constants.app import FPS
 from constants.ps3Controller import SELECT
@@ -19,6 +20,7 @@ class StsPiController(object):
     if buttons[SELECT]:
       self.done = True
       pygame.quit()
+      os.system('shutdown -now -h')
       return
 
     translateInputToOutput(buttons)
