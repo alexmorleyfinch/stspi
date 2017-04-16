@@ -1,4 +1,7 @@
 from stspicontroller import StsPiController
+from pygameloop import PygameLoop
 
-controller = StsPiController()
-controller.start()
+game = StsPiController()
+loop = PygameLoop(game)
+
+loop.start()

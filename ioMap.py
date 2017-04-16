@@ -1,8 +1,13 @@
+import os
+import pygame
+
 from output import explorerHat
-from constants.ps3Controller import EX, SQUARE, LEFT, RIGHT
+from constants.ps3Controller import EX, SQUARE, LEFT, RIGHT, SELECT
 
 def translateInputToOutput(buttons):
-  if buttons[EX]:
+  if buttons[SELECT]:
+    safeShutdown()
+  elif buttons[EX]:
     if buttons[LEFT]:
       explorerHat.leftBank()
     elif buttons[RIGHT]:
@@ -22,3 +27,7 @@ def translateInputToOutput(buttons):
     explorerHat.right()
   else:
     explorerHat.stop()
+
+def safeShutdown():
+  pygame.quit()
+  os.system('shutdown now -h')
