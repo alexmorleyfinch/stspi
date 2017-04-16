@@ -38,7 +38,11 @@ class PygameWindowOutput():
       isActive = buttons[key]
       self.renderText(buttonLabels[key], pos[0], pos[1], TEXT if isActive else TEXT_FADED)
 
-  def render(self, buttons):
+  def render(self, hasController, buttons):
+    if not hasController:
+      self.renderNoController()
+      return
+
     self.screen.fill(BACKGROUND)
 
     self.renderJoystickFeedback(buttons)

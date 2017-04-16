@@ -8,6 +8,10 @@ from ioMap import translateInputToOutput
 from input.controller import Ps3ControllerInput
 from output.pygameDisplay import PygameWindowOutput
 
+def safeShutdown():
+  pygame.quit()
+  os.system('shutdown now -h')
+
 class StsPiController(object):
   def __init__(self):
     pygame.init()
@@ -16,37 +20,17 @@ class StsPiController(object):
     self.controllerInput = Ps3ControllerInput()
 
   def render(self):
-    buttons = self.controllerInput.getButtons(0)
+    hasController = self.controllerInput.hasController()
+    buttons = [] if not hasController else self.controllerInput.getButtons(0)
 
-    if buttons[SELECT]:
-      self.done = True
-      pygame.quit()
-      os.system('shutdown now -h')
-      return
+    if hasController and buttons[SELECT]:
+      self.stop()
+      return safeShutdown()
 
-    translateInputToOutput(buttons)
-    self.visualOutput.render(buttons)
+    if hasController:
+      translateInputToOutput(buttons)
 
-  def tryReconnect(self):
-    done = False
-    clock = pygame.time.Clock()
-
-    eh.light.blue.on()
-
-    while not done:
-      for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-          self.done = True
-          done = True
-
-      if self.controllerInput.hasController():
-        done = True
-
-      self.visualOutput.renderNoController()
-
-      clock.tick(FPS)
-
-    eh.light.blue.off()
+    self.visualOutput.render(hasController, buttons)
 
   def start(self):
     self.done = False
@@ -57,10 +41,7 @@ class StsPiController(object):
     while not self.done:
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
-          self.done = True
-
-      if not self.controllerInput.hasController():
-        self.tryReconnect()
+          self.stop()
 
       self.render()
 
