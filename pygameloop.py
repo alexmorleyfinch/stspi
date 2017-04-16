@@ -17,7 +17,11 @@ class PygameLoop(object):
         if event.type == pygame.QUIT:
           done = True
 
-      self.game.render()
+      try:
+        self.game.render()
+      except pygame.error as err:
+        print('Pygame Error:', err)
+        done = True
 
       clock.tick(FPS)
 
