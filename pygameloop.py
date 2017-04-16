@@ -13,18 +13,21 @@ class PygameLoop(object):
     self.game.start()
     print('Game Starting')
 
-    while not done:
-      for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    try:
+      while not done:
+        for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+            done = True
+
+        try:
+          self.game.render()
+        except pygame.error as err:
+          print('Pygame Error:', err)
           done = True
 
-      try:
-        self.game.render()
-      except pygame.error as err:
-        print('Pygame Error:', err)
-        done = True
-
-      clock.tick(FPS)
+        clock.tick(FPS)
+    except KeyboardInterrupt:
+      print(" Interrupt")
 
     self.game.stop()
     print('Game Stopped')
