@@ -66,3 +66,34 @@ def reverseRightBank():
   if lastCommandWas('reverseRightBank'): return
   eh.motor.two.forwards(OUTER_BANK_SPEED)
   eh.motor.one.backward(INNER_BANK_SPEED)
+
+
+# LED Controls
+
+def light1(on):
+  if disabled: return
+  if on:
+    eh.light.blue.on()
+  else:
+    eh.light.blue.off()
+
+def light2(on):
+  if disabled: return
+  if on:
+    eh.light.yellow.on()
+  else:
+    eh.light.yellow.off()
+
+def light3(on):
+  if disabled: return
+  if on:
+    eh.light.green.on()
+  else:
+    eh.light.green.off()
+
+def light4(on):
+  if disabled: return
+  if on:
+    eh.light.red.on()
+  else:
+    eh.light.red.off()
