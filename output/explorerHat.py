@@ -1,29 +1,59 @@
 import explorerhat as eh
 
+SPEED = 100
+INNER_BANK_SPEED = 20
+OUTER_BANK_SPEED = 100
+
+lastCommand = None
+
+def lastCommandWas(name):
+  if lastCommand == name:
+    return True
+
+  lastCommand = name
+  return False
+
 def go():
-  eh.motor.one.backwards(100)
-  eh.motor.two.forwards(100)
+  if lastCommandWas('go'): return
+  eh.motor.one.backwards(SPEED)
+  eh.motor.two.forwards(SPEED)
 
 def reverse():
-  eh.motor.one.forwards(100)
-  eh.motor.two.backwards(100)
+  if lastCommandWas('reverse'): return
+  eh.motor.one.forwards(SPEED)
+  eh.motor.two.backwards(SPEED)
 
 def stop():
+  if lastCommandWas('stop'): return
   eh.motor.one.stop()
   eh.motor.two.stop()
 
 def left():
-  eh.motor.one.forwards(100)
-  eh.motor.two.forwards(100)
+  if lastCommandWas('left'): return
+  eh.motor.one.forwards(SPEED)
+  eh.motor.two.forwards(SPEED)
 
 def right():
-  eh.motor.one.backwards(100)
-  eh.motor.two.backwards(100)
+  if lastCommandWas('right'): return
+  eh.motor.one.backwards(SPEED)
+  eh.motor.two.backwards(SPEED)
 
 def leftBank():
-  eh.motor.one.backward(70)
-  eh.motor.two.forwards(100)
+  if lastCommandWas('leftBank'): return
+  eh.motor.one.backward(INNER_BANK_SPEED)
+  eh.motor.two.forwards(OUTER_BANK_SPEED)
 
 def rightBank():
-  eh.motor.two.forwards(70)
-  eh.motor.one.backward(100)
+  if lastCommandWas('rightBank'): return
+  eh.motor.two.forwards(INNER_BANK_SPEED)
+  eh.motor.one.backward(OUTER_BANK_SPEED)
+
+def reverseLeftBank():
+  if lastCommandWas('reverseLeftBank'): return
+  eh.motor.one.backward(OUTER_BANK_SPEED)
+  eh.motor.two.forwards(INNER_BANK_SPEED)
+
+def reverseRightBank():
+  if lastCommandWas('reverseRightBank'): return
+  eh.motor.two.forwards(OUTER_BANK_SPEED)
+  eh.motor.one.backward(INNER_BANK_SPEED)

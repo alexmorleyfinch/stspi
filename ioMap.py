@@ -11,11 +11,9 @@ def translateInputToOutput(buttons):
       explorerHat.go()
   elif buttons[SQUARE]:
     if buttons[LEFT]:
-      #explorerHat.reverseLeftBank()
-      explorerHat.reverse()
+      explorerHat.reverseLeftBank()
     elif buttons[RIGHT]:
-      #explorerHat.reverseRightBank()
-      explorerHat.reverse()
+      explorerHat.reverseRightBank()
     else:
       explorerHat.reverse()
   elif buttons[LEFT]:
