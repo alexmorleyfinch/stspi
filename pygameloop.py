@@ -11,6 +11,7 @@ class PygameLoop(object):
     done = False
 
     self.game.start()
+    print('Game Starting')
 
     while not done:
       for event in pygame.event.get():
@@ -26,3 +27,4 @@ class PygameLoop(object):
       clock.tick(FPS)
 
     self.game.stop()
+    print('Game Stopped')
