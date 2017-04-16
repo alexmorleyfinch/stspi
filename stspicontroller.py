@@ -1,5 +1,6 @@
 import os
 import pygame
+import explorerhat as eh
 from constants.app import FPS
 from constants.ps3Controller import SELECT
 
@@ -30,6 +31,8 @@ class StsPiController(object):
     done = False
     clock = pygame.time.Clock()
 
+    eh.light.blue.on()
+
     while not done:
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -43,9 +46,13 @@ class StsPiController(object):
 
       clock.tick(FPS)
 
+    eh.light.blue.off()
+
   def start(self):
     self.done = False
     clock = pygame.time.Clock()
+
+    eh.light.red.on()
 
     while not self.done:
       for event in pygame.event.get():
@@ -58,6 +65,8 @@ class StsPiController(object):
       self.render()
 
       clock.tick(FPS)
+
+    eh.light.red.off()
 
   def stop(self):
     self.done = True
