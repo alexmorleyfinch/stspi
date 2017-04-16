@@ -1,13 +1,22 @@
-import explorerhat as eh
+# we have a disabled flag for when we test the code from a device where the explorer hat does not exist
+
+disabled = False
+
+try:
+  import explorerhat as eh
+except ImportError:
+  disabled = True
 
 SPEED = 100
 INNER_BANK_SPEED = 20
 OUTER_BANK_SPEED = 100
 
-lastCommand = None
+# we store the last command so we do not make unnecessary calls to explorerhat.
+# this also conveniently allows us to disable the functions so the `eh` calls are never run
 
+lastCommand = None
 def lastCommandWas(name):
-  if lastCommand == name:
+  if disabled or lastCommand == name:
     return True
 
   lastCommand = name
